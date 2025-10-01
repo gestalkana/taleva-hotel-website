@@ -26,14 +26,15 @@ export default function Hero() {
 
   return (
     <section
-      id="accueil"
-      className="relative bg-taleva-indigo text-white py-32 md:py-48 scroll-mt-10"
-      style={{
-        backgroundImage: `url(${heroImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+  id="accueil"
+  className="relative bg-taleva-indigo text-white py-32 md:py-48 scroll-mt-10 min-h-screen"
+  style={{
+    backgroundImage: `url(${heroImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
       <div className="relative container mx-auto px-6 text-center max-w-3xl space-y-8">
