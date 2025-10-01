@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import InviteReview from './InviteReview';
 import { FaUser, FaEnvelope, FaTag, FaCommentDots } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
+import { Circles } from 'react-loader-spinner';
 
 const SERVICE_ID = 'service_gotdp85';
 const TEMPLATE_ID = 'template_1s1579h';
@@ -16,12 +17,15 @@ const Contact = () => {
     message: '',
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const templateParams = {
       from_name: formData.name,
@@ -32,6 +36,7 @@ const Contact = () => {
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then(() => {
+        setLoading(false);
         Swal.fire({
           title: 'Merci beaucoup !',
           text: `Votre message a bien été envoyé, ${formData.name}. Nous vous répondrons rapidement.`,
@@ -43,6 +48,7 @@ const Contact = () => {
         setFormData({ name: '', email: '', subject: '', message: '' });
       })
       .catch((error) => {
+        setLoading(false);
         console.error('Erreur lors de l\'envoi de l\'email :', error);
         Swal.fire({
           title: 'Erreur',
@@ -120,12 +126,30 @@ const Contact = () => {
             />
           </label>
 
-          <button
-            type="submit"
-            className="w-full bg-taleva-indigo text-white py-3 rounded-md font-semibold hover:bg-taleva-indigo-dark transition"
-          >
-            Envoyer
-          </button>
+          {/* Spinner de chargement */}
+          {loading ? (
+            <div className="flex justify-center items-center py-4">
+              <Circles
+                height="60"
+                width="60"
+                color="#4f46e5"
+                ariaLabel="circles-loading"
+                visible={true}
+              />
+            </div>
+          ) : (
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 rounded-md font-semibold transition ${
+                loading
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-taleva-indigo text-white hover:bg-taleva-indigo-dark'
+              }`}
+            >
+              Envoyer
+            </button>
+          )}
         </form>
 
         {/* Invitation à laisser un avis */}
