@@ -17,7 +17,7 @@ const AboutPresentation = () => (
       custom={0}
       variants={fadeUp}
     >
-      Un cadre chaleureux, familial et authentique au cœur de la région de Pagalane
+      Un cadre chaleureux, familial et authentique au cœur de la région de Pangalane
     </motion.h3>
 
     {/* Paragraphe 1 */}

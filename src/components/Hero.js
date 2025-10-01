@@ -1,10 +1,33 @@
+import { useState, useEffect } from 'react';
 import './Hero.css';
 import heroImage from '../assets/images/hero-background.jpg';
+
+const slogans = [
+  "Des moments simples, des souvenirs précieux.",
+  "Un lieu pour se retrouver, rire et se détendre.",
+  "Vivez l’expérience bungalow en famille.",
+];
+
 export default function Hero() {
+  const [currentSloganIndex, setCurrentSloganIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // lancer le fade out
+      setTimeout(() => {
+        setCurrentSloganIndex((prev) => (prev + 1) % slogans.length);
+        setFade(true); // lancer le fade in
+      }, 500); // délai pour attendre la fin du fade out
+    }, 4000); // toutes les 4 secondes
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section 
-      className="relative bg-taleva-indigo text-white py-32 md:py-48"
-      className="relative bg-taleva-indigo text-white py-32 md:py-48"
+    <section
+      id="accueil"
+      className="relative bg-taleva-indigo text-white py-32 md:py-48 scroll-mt-10"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundSize: 'cover',
@@ -17,15 +40,18 @@ export default function Hero() {
         <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown">
           Bienvenue à l'Hôtel Taleva
         </h2>
-        <p style={{ marginBottom: '32px' }} className="text-lg animate-fadeInUp">
-          Un séjour inoubliable au cœur de la nature.
+        <p
+          className={`text-lg slogan-transition ${fade ? 'fade-in' : 'fade-out'}`}
+          style={{ marginBottom: '32px' }}
+        >
+          {slogans[currentSloganIndex]}
         </p>
         <a
-          href="#rooms"
+          href="#contact"
           className="bg-taleva-red hover:bg-red-600 text-white py-3 px-8 rounded text-lg font-semibold transition transform hover:scale-105 animate-fadeInUp"
           style={{ marginTop: '32px' }}
         >
-          Réserver maintenant
+          Faire une demande
         </a>
       </div>
     </section>

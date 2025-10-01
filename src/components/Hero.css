@@ -30,3 +30,35 @@
   animation: fadeInUp 1s ease forwards;
   animation-delay: 0.3s;
 }
+
+/* Animation de changement de slogan */
+
+.slogan-transition {
+  transition: opacity 0.5s ease;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+/* Appliquer la nouvelle police */
+.hero-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 1.25rem; /* ≈20px */
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* un léger relief */
+}
+
+/* Pour un titre plus classe */
+.hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}

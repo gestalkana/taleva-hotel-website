@@ -11,8 +11,8 @@ export default function Navbar() {
 
         {/* Menu desktop */}
         <ul className="hidden md:flex space-x-6">
+          <li><a href="#accueil" className="hover:text-taleva-red">Accueil</a></li>
           <li><a href="#about" className="hover:text-taleva-red">À propos</a></li>
-          <li><a href="#rooms" className="hover:text-taleva-red">Chambres</a></li>
           <li><a href="#services" className="hover:text-taleva-red">Services</a></li>
           <li><a href="#contact" className="hover:text-taleva-red">Contact</a></li>
         </ul>
@@ -52,8 +52,8 @@ export default function Navbar() {
       {/* Menu mobile */}
       {isOpen && (
         <ul className="md:hidden mt-4 space-y-3 text-left pl-4">
+         <li><a href="#accueil" className="block hover:text-taleva-red" onClick={() => setIsOpen(false)}>Accueil</a></li>
           <li><a href="#about" className="block hover:text-taleva-red" onClick={() => setIsOpen(false)}>À propos</a></li>
-          <li><a href="#rooms" className="block hover:text-taleva-red" onClick={() => setIsOpen(false)}>Chambres</a></li>
           <li><a href="#services" className="block hover:text-taleva-red" onClick={() => setIsOpen(false)}>Services</a></li>
           <li><a href="#contact" className="block hover:text-taleva-red" onClick={() => setIsOpen(false)}>Contact</a></li>
         </ul>
